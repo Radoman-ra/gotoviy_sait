@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Colligo Club</title>
+    <style>
+      /* Общие стили */
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: white;
+        color: black;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 40px;
+        background-color: white;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      header h1 {
+        font-size: 36px;
+        font-weight: bold;
+        margin: 0;
+      }
+
+      header nav {
+        display: flex;
+        gap: 20px;
+      }
+
+      header nav a {
+        text-decoration: none;
+        font-size: 18px;
+        color: black;
+        padding: 5px 10px;
+      }
+
+      header nav a.contact {
+        border: 2px solid green;
+        padding: 5px 15px;
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      header nav a:hover {
+        color: green;
+      }
+
+      /* Плавный скролл */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Стили для секций */
+      section {
+        padding: 100px 20px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      section h2 {
+        font-size: 36px;
+        margin-bottom: 20px;
+      }
+
+      section p {
+        font-size: 18px;
+        line-height: 1.6;
+        max-width: 800px;
+      }
+
+      .button {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        background-color: green;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+      }
+
+      .button:hover {
+        background-color: darkgreen;
+      }
+
+      /* Стили для карточек */
+      .card {
+        display: inline-block;
+        width: 45%;
+        margin: 20px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        text-align: left;
+        max-width: 400px;
+      }
+
+      .card img {
+        width: 100%;
+        height: auto;
+        margin-bottom: 15px;
+      }
+
+      .card h3 {
+        font-size: 24px;
+        margin: 0 0 10px;
+      }
+
+      .card p {
+        font-size: 16px;
+      }
+
+      .form-container {
+        margin-top: 20px;
+      }
+
+      .form-container input {
+        padding: 10px;
+        font-size: 16px;
+        width: calc(100% - 120px);
+        margin-right: 10px;
+        border: 1px solid #ccc;
+      }
+
+      .form-container button {
+        padding: 10px 20px;
+        font-size: 16px;
+        color: white;
+        background-color: green;
+        border: none;
+        cursor: pointer;
+      }
+
+      .form-container button:hover {
+        background-color: darkgreen;
+      }
+
+      footer {
+        padding: 20px;
+        text-align: center;
+        background-color: #f9f9f9;
+        margin-top: 50px;
+      }
+
+      /* Темно-зеленый фон для секции контактов */
+      #contact {
+        background-color: rgb(0, 65, 0);
+        color: white;
+      }
+
+      #contact p {
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Хедер -->
+    <header>
+      <h1>Colligo Club</h1>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#contact" class="contact">Contact</a>
+      </nav>
+    </header>
+
+    <!-- 1 экран -->
+    <section
+      id="home"
+      style="
+        background-image: url('board-game.webp');
+        background-size: cover;
+        background-position: center;
+        color: white;
+      "
+    >
+      <h2>Welcome to Colligo Club</h2>
+      <p>Experience the joy of board games together!</p>
+      <a href="#services" class="button">View Services</a>
+    </section>
+
+    <!-- 2 экран -->
+    <section id="about">
+      <div
+        style="
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-wrap: wrap;
+          max-width: 1200px;
+          margin: 0 auto;
+        "
+      >
+        <div style="flex: 1; min-width: 300px; padding: 20px">
+          <h2>Welcome to Colligo Club</h2>
+          <p>Your hub for game nights</p>
+          <p>
+            At Colligo Club, we believe in the power of connection through play.
+            Nestled in the heart of Warsaw, we create vibrant spaces where
+            friends and newcomers gather to enjoy laughter and the thrill of
+            board games. Whether you're a seasoned strategist or a curious
+            newbie, our inviting atmosphere promises unforgettable evenings
+            filled with camaraderie and fun. Join us and experience the magic of
+            board games like never before!
+          </p>
+          <a href="#contact" class="button">Get in Touch</a>
+        </div>
+        <div style="flex: 1; min-width: 300px">
+          <img
+            src="playing-board-game.jpeg"
+            alt="People playing board games"
+            style="width: 100%; height: auto"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 экран -->
+    <section id="services">
+      <h2>Game nights</h2>
+      <p>Join us for unforgettable fun!</p>
+
+      <div
+        style="
+          display: flex;
+          justify-content: center;
+          flex-wrap: wrap;
+          max-width: 1200px;
+          margin: 0 auto;
+        "
+      >
+        <!-- Карточка 1 -->
+        <div class="card">
+          <img src="dnd-dice.jpeg" alt="Dungeons & Dragons Dice" />
+          <h3>Dungeons & Dragons nights</h3>
+          <p>Dive into epic adventures with our D&D nights.</p>
+          <div class="form-container">
+            <input type="email" placeholder="Enter your email" />
+            <button>Send</button>
+          </div>
+        </div>
+
+        <!-- Карточка 2 -->
+        <div class="card">
+          <img src="board-game-mixers.jpg" alt="Board Game Mixers" />
+          <h3>Board game mixers</h3>
+          <p>Experience a variety of games at our mixers.</p>
+          <div class="form-container">
+            <input type="email" placeholder="Enter your email" />
+            <button>Send</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 экран -->
+    <section id="contact">
+      <h2>Get in Touch</h2>
+      <p>We're here to answer your questions!</p>
+      <p>Phone: +48 123 456 789</p>
+      <p>Email: contact@colligoclub.com</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>&copy; 2024 Colligo Club. All rights reserved.</footer>
+  </body>
+</html>
