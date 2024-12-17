@@ -1,11 +1,65 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Colligo Club</title>
     <style>
       /* Общие стили */
+      @font-face {
+        font-family: "ADLaMDisplay";
+        src: url("ADLaMDisplay-Regular.ttf") format("truetype");
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      section#home {
+        position: relative;
+        height: 66vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;
+        overflow: hidden;
+      }
+
+      section#home::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("board-game.webp");
+        background-size: cover;
+        background-position: center;
+        filter: grayscale(50%) brightness(70%);
+        z-index: -1;
+      }
+
+      /* Текст на фоне */
+      section#home h1 {
+        font-size: 72px;
+        margin: 0;
+        font-weight: bold;
+      }
+
+      section#home p {
+        font-size: 24px;
+        margin: 10px 0 20px;
+      }
+
+      h1 {
+        font-family: "ADLaMDisplay", sans-serif;
+        font-size: 72px;
+        font-weight: bold;
+        background: linear-gradient(to right, #ff6a9c, #a056f2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        display: inline-block;
+      }
+
       body {
         font-family: "Arial", sans-serif;
         margin: 0;
@@ -101,18 +155,20 @@
       /* Стили для карточек */
       .card {
         display: inline-block;
-        width: 45%;
+        width: 100%;
         margin: 20px;
         padding: 20px;
         border: 1px solid #ddd;
         text-align: left;
         max-width: 400px;
+        border-radius: 5px;
       }
 
       .card img {
         width: 100%;
         height: auto;
         margin-bottom: 15px;
+        border-radius: 5px;
       }
 
       .card h3 {
@@ -124,8 +180,20 @@
         font-size: 16px;
       }
 
+      .card button {
+        border-radius: 5px;
+        width: 120px;
+        margin-top: 10px;
+      }
+
+      .card input {
+        border-radius: 5px;
+      }
+
       .form-container {
         margin-top: 20px;
+        display: flex;
+        flex-direction: column;
       }
 
       .form-container input {
@@ -153,7 +221,6 @@
         padding: 20px;
         text-align: center;
         background-color: #f9f9f9;
-        margin-top: 50px;
       }
 
       /* Темно-зеленый фон для секции контактов */
@@ -166,10 +233,14 @@
         color: white;
       }
 
+      .hamburger {
+        display: none;
+      }
+
       /* Адаптивные стили для мобильных устройств */
       @media (max-width: 768px) {
         header {
-          justify-content: center;
+          justify-content: space-between;
           padding: 10px 20px;
         }
 
@@ -181,34 +252,47 @@
           font-size: 24px;
         }
 
-        section {
-          padding: 50px 10px;
+        .hamburger {
+          display: block;
+          cursor: pointer;
+          font-size: 24px;
+          border: none;
+          background: none;
         }
 
-        section h2 {
-          font-size: 28px;
+        .mobile-nav {
+          display: none;
+          flex-direction: column;
+          gap: 10px;
+          background-color: white;
+          position: absolute;
+          top: 50px;
+          left: 0;
+          width: 100%;
+          padding: 20px;
+          z-index: 101;
         }
 
-        section p {
-          font-size: 16px;
+        .mobile-nav a {
+          text-decoration: none;
+          font-size: 18px;
+          color: black;
+          padding: 5px 10px;
         }
 
-        .card {
-          width: 90%;
-          max-width: 100%;
+        .mobile-nav a.contact {
+          border: 2px solid green;
+          padding: 5px 15px;
+          font-size: 20px;
+          font-weight: bold;
         }
 
-        .button {
-          font-size: 16px;
-          padding: 8px 16px;
+        .mobile-nav a:hover {
+          color: green;
         }
 
-        .form-container input {
-          width: calc(100% - 90px);
-        }
-
-        .form-container button {
-          font-size: 14px;
+        .show {
+          display: flex;
         }
       }
     </style>
@@ -217,7 +301,8 @@
     <!-- Хедер -->
     <header>
       <h1>Colligo Club</h1>
-      <nav>
+      <button class="hamburger" onclick="toggleMenu()">&#9776;</button>
+      <nav class="mobile-nav" id="mobile-nav">
         <a href="#home">Главная</a>
         <a href="#about">О нас</a>
         <a href="#services">Услуги</a>
@@ -227,15 +312,7 @@
     </header>
 
     <!-- 1 экран -->
-    <section
-      id="home"
-      style="
-        background-image: url('board-game.webp');
-        background-size: cover;
-        background-position: center;
-        color: white;
-      "
-    >
+    <section id="home">
       <h2>Добро пожаловать в Colligo Club</h2>
       <p>Испытайте радость настольных игр вместе с нами!</p>
       <a href="#services" class="button">Посмотреть услуги</a>
@@ -254,7 +331,7 @@
         "
       >
         <div style="flex: 1; min-width: 300px; padding: 20px">
-          <h2>Добро пожаловать в Colligo Club</h2>
+          <h2>Добро пожаловать в Colligo Clubb</h2>
           <p>Ваш центр игровых вечеров</p>
           <p>
             В Клубе Коллиго мы верим в силу объединения через игры. В самом
@@ -270,7 +347,7 @@
         <div style="flex: 1; min-width: 300px">
           <img
             src="playing-board-game.jpeg"
-            alt="Люди играют в настольные игры"
+            alt="People playing board games"
             style="width: 100%; height: auto"
           />
         </div>
@@ -293,7 +370,7 @@
       >
         <!-- Карточка 1 -->
         <div class="card">
-          <img src="dnd-dice.jpeg" alt="Кубики для Dungeons & Dragons" />
+          <img src="dnd-dice.jpeg" alt="Dungeons & Dragons Dice" />
           <h3>Вечера Dungeons & Dragons</h3>
           <p>Погрузитесь в эпические приключения с нашими D&D вечерами.</p>
           <div class="form-container">
@@ -304,8 +381,8 @@
 
         <!-- Карточка 2 -->
         <div class="card">
-          <img src="board-game-mixers.jpg" alt="Миксы настольных игр" />
-          <h3>Миксы настольных игр</h3>
+          <img src="board-game-mixers.jpg" alt="Board Game Mixers" />
+          <h3>Микс настольных игр</h3>
           <p>Испытайте разнообразие игр на наших вечерах миксов.</p>
           <div class="form-container">
             <input type="email" placeholder="Введите ваш email" />
@@ -324,6 +401,20 @@
     </section>
 
     <!-- Footer -->
-    <footer>&copy; 2024 Colligo Club. Все права защищены.</footer>
+    <footer>&copy; 2024 Colligo Club. All rights reserved.</footer>
+
+    <script>
+      function toggleMenu() {
+        const nav = document.getElementById("mobile-nav");
+        nav.classList.toggle("show");
+      }
+
+      document.querySelectorAll("#mobile-nav a").forEach((link) => {
+        link.addEventListener("click", () => {
+          const nav = document.getElementById("mobile-nav");
+          nav.classList.remove("show");
+        });
+      });
+    </script>
   </body>
 </html>
