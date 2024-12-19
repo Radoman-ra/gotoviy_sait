@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -331,7 +331,7 @@
         "
       >
         <div style="flex: 1; min-width: 300px; padding: 20px">
-          <h2>Добро пожаловать в Colligo Clubb</h2>
+          <h2>Добро пожаловать в Colligo Club</h2>
           <p>Ваш центр игровых вечеров</p>
           <p>
             В Клубе Коллиго мы верим в силу объединения через игры. В самом
@@ -374,8 +374,12 @@
           <h3>Вечера Dungeons & Dragons</h3>
           <p>Погрузитесь в эпические приключения с нашими D&D вечерами.</p>
           <div class="form-container">
-            <input type="email" placeholder="Введите ваш email" />
-            <button>Отправить</button>
+            <input
+              type="email"
+              id="dnd-email"
+              placeholder="Введите ваш email"
+            />
+            <button onclick="submitEmail('dnd-email', 'dnd')">Отправить</button>
           </div>
         </div>
 
@@ -385,8 +389,12 @@
           <h3>Микс настольных игр</h3>
           <p>Испытайте разнообразие игр на наших вечерах миксов.</p>
           <div class="form-container">
-            <input type="email" placeholder="Введите ваш email" />
-            <button>Отправить</button>
+            <input
+              type="email"
+              id="mix-email"
+              placeholder="Введите ваш email"
+            />
+            <button onclick="submitEmail('mix-email', 'mix')">Отправить</button>
           </div>
         </div>
       </div>
@@ -403,7 +411,57 @@
     <!-- Footer -->
     <footer>&copy; 2024 Colligo Club. All rights reserved.</footer>
 
-    <script>
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+      import {
+        getFirestore,
+        collection,
+        addDoc,
+      } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
+
+      // Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyBT7AiTw3dmpRaJNWQuVuRL-nMC50BDG8M",
+        authDomain: "colligo-club.firebaseapp.com",
+        projectId: "colligo-club",
+        storageBucket: "colligo-club.firebasestorage.app",
+        messagingSenderId: "881106702385",
+        appId: "1:881106702385:web:59d6c74aebde07b7f6c510",
+        measurementId: "G-XQ7J6WKN64",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      // Email validation function
+      function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(String(email).toLowerCase());
+      }
+
+      // Submit email to Firestore
+      async function submitEmail(inputId, collectionName) {
+        const emailInput = document.getElementById(inputId);
+        const email = emailInput.value.trim();
+
+        if (!validateEmail(email)) {
+          alert("Please enter a valid email address.");
+          return;
+        }
+
+        try {
+          await addDoc(collection(db, collectionName), { email });
+          alert("Email successfully added!");
+          emailInput.value = "";
+        } catch (error) {
+          console.error("Error adding email: ", error);
+          alert("Failed to add email. Please try again later.");
+        }
+      }
+      window.submitEmail = submitEmail;
+
       function toggleMenu() {
         const nav = document.getElementById("mobile-nav");
         nav.classList.toggle("show");
