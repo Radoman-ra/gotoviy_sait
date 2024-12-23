@@ -73,7 +73,8 @@
         justify-content: space-between;
         align-items: center;
         padding: 20px 40px;
-        background-color: white;
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(10px);
         position: sticky;
         top: 0;
         z-index: 100;
@@ -162,6 +163,12 @@
         text-align: left;
         max-width: 400px;
         border-radius: 5px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
       }
 
       .card img {
@@ -240,6 +247,8 @@
         header {
           justify-content: space-between;
           padding: 10px 20px;
+          background: white;
+          backdrop-filter: blur(10px);
         }
 
         header nav {
@@ -262,9 +271,11 @@
           display: none;
           flex-direction: column;
           gap: 10px;
-          background-color: white;
+          background: white;
+          background: rgba(255, 255, 255, 0.7);
+          backdrop-filter: blur(10px);
           position: absolute;
-          top: 50px;
+          top: 54px;
           left: 0;
           width: 100%;
           padding: 20px;
@@ -373,7 +384,7 @@
           <p>Dive into epic adventures with our D&D nights.</p>
           <div class="form-container">
             <input type="email" id="dnd-email" placeholder="Enter your email" />
-            <button onclick="submitEmail('dnd-email', 'dnd')">Send</button>
+            <button onclick="submitEmail('dnd-email', 'dnd')">Join us</button>
           </div>
         </div>
 
@@ -384,7 +395,7 @@
           <p>Experience a variety of games at our mixers.</p>
           <div class="form-container">
             <input type="email" id="mix-email" placeholder="Enter your email" />
-            <button onclick="submitEmail('mix-email', 'mix')">Send</button>
+            <button onclick="submitEmail('mix-email', 'mix')">Join us</button>
           </div>
         </div>
       </div>
@@ -436,6 +447,11 @@
         const emailInput = document.getElementById(inputId);
         const email = emailInput.value.trim();
 
+        if (email === "") {
+          alert("Please enter your email address.");
+          return;
+        }
+
         if (!validateEmail(email)) {
           alert("Please enter a valid email address.");
           return;
@@ -456,6 +472,7 @@
         const nav = document.getElementById("mobile-nav");
         nav.classList.toggle("show");
       }
+      window.toggleMenu = toggleMenu;
 
       document.querySelectorAll("#mobile-nav a").forEach((link) => {
         link.addEventListener("click", () => {
